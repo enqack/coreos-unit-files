@@ -1,5 +1,5 @@
 [Unit]
-Description=InfluxDb containerized back-end for cAdvisor agent
+Description=Containerized InfluxDb storage for cAdvisor agent
 After=docker.service
 Requires=docker.service
 

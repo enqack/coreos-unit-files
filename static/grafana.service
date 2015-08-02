@@ -1,5 +1,5 @@
 [Unit]
-Description=Grafana metrics dashboard with linked InfluxDb containerized back-end
+Description=Grafana metrics dashboard with linked InfluxDb container
 After=influxdb.service
 Requires=influxdb.service
 
@@ -18,7 +18,7 @@ ExecStart=/usr/bin/docker run --link influxsrv:influxsrv --name grafanasrv \
       --env INFLUXDB_PORT=8086 \
       --env INFLUXDB_NAME=cadvisor \
       --env INFLUXDB_USER=root \
-      --env INFLUXDB_PASS=pissoff \
+      --env INFLUXDB_PASS=root \
       grafana/grafana:2.0.2
 ExecStop=/usr/bin/docker stop grafanasrv
 

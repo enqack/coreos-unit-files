@@ -1,5 +1,5 @@
 [Unit]
-Description=cAdvisor container monitoring
+Description=cAdvisor container monitoring with InfluxDb storage
 After=influxdb.service
 Requires=influxdb.service
 
