@@ -1,0 +1,24 @@
+[Unit]
+Description=InfluxDb server back-end for cAdvisor
+After=docker.service
+Requires=docker.service
+
+[Service]
+EnvironmentFile=/etc/environment
+User=core
+
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill influxsrv
+ExecStartPre=-/usr/bin/docker rm influxsrv
+ExecStartPre=/usr/bin/docker pull tutum/influxdb:0.8.8
+ExecStart=/usr/bin/docker run --name influxsrv \
+      -p 8083:8083 \
+      -p 8086:8086 \
+      --expose 8090 \
+      --expose 8099 \
+      --env PRE_CREATE_DB=cadvisor \
+      tutum/influxdb:0.8.8
+ExecStop=/usr/bin/docker stop influxsrv
+
+[X-Fleet]
+Global=false
